@@ -158,7 +158,7 @@ async function run() {
         res.send(result)
     })
 
-    app.post('/menus',async(req,res)=>{
+    app.post('/menus',verifyToken,verifyAdmin,async(req,res)=>{
       const item = req.body;
       const result = await menuCollection.insertOne(item)
       res.send(result)
