@@ -151,8 +151,9 @@ async function run() {
       const result = await userCollection.deleteOne(query)
       res.send(result)
     })
-
+// ................................
     // menu related api
+// ................
     app.get('/menus',async(req,res)=>{
         const result = await menuCollection.find().toArray()
         res.send(result)
@@ -163,6 +164,18 @@ async function run() {
       const result = await menuCollection.insertOne(item)
       res.send(result)
     })
+
+    app.delete('/menu/:id',verifyToken,verifyAdmin,async(req,res)=>{
+      const id = req.params.id
+      const query = {_id:new ObjectId(id)}
+      const result = await menuCollection.deleteOne(query)
+      res.send(result)
+    })
+
+// ...............................
+// ....................... 
+
+
 
     app.get('/reviews',async(req,res)=>{
         const result = await reviewCollection.find().toArray()
